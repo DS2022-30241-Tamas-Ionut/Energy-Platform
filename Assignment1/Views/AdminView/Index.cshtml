@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<div class="parent">
+    <div>Hello, @User.Identity.Name</div>
+
+    <div class="component" id="admin-view">
+        <h2><strong>Devices</strong></h2>
+        <manage-devices />
+    </div>
+    <div class="component" id="admin-view-users">
+        <h2><strong>Users</strong></h2>
+        <manage-users />
+    </div>
+</div>
+
+
+<script src="./bundle/Devices.js"></script>
+<script src="./bundle/Users.js"></script>

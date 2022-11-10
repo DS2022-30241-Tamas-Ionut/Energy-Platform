@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]Energy Utility</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.png" />
+</head>
+<body background="background-image.jpeg">
+    <header>
+        <nav class="navigation">
+            <img class="logo header-elements" src="~/sdLogo.png"/>
+            <div class="flex-nav">
+                <a class="header-elements button-header" href="/Login">Login</a>
+                <a class="header-elements button-header" href="/Register">Register</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Energy Utility Platform
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

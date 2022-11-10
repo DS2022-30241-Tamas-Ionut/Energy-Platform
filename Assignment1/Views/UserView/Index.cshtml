@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+@model string
+<div class="parent">
+    <div>Hello, @Model</div>
+
+    <div class="component" id="user-view">
+        <h2><strong>Devices</strong></h2>
+        <user-role :user="user" />
+    </div>
+</div>
+
+
+<script>
+    var user = "@Model";
+</script>
+
+<script src="~/bundle/UserRole.js"></script>
