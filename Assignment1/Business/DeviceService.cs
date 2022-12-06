@@ -138,26 +138,5 @@ namespace Assignment1.Business
 
             return new List<DeviceViewModel>();
         }
-
-        public DeviceViewModel UpdateMaxHourlyConsumption(int deviceId, double consumption)
-        {
-            var device = _repository.Get<Device>(deviceId);
-
-            if(device == null)
-            {
-                return null;
-            }
-
-            if(consumption > device.MaxHourlyConsumption)
-            {
-                device.MaxHourlyConsumption = consumption;
-                _repository.Update<Device>(device);
-
-                return new DeviceViewModel { Address = device.Address, Description = device.Description, Id = device.Id, MaxHourlyConsumption = consumption, UserId = device.UserId };
-
-            }
-
-            return new DeviceViewModel { Address = device.Address, Description = device.Description, Id = device.Id, MaxHourlyConsumption = device.MaxHourlyConsumption, UserId = device.UserId };
-        }
     }
 }

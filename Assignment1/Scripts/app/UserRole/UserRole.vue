@@ -99,6 +99,11 @@
                         self.chartD.labels = parsedDates;
                         self.chartD.datasets[0].data = consumption;
                         self.chartD.datasets[0].backgroundColor = color;
+                    },
+                    error: function () {
+                        self.chartD.labels = [];
+                        self.chartD.datasets[0].data = [];
+                        self.chartD.datasets[0].backgroundColor = [];
                     }
                 });
             }

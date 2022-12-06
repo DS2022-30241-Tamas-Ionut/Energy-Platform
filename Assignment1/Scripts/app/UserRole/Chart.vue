@@ -25,6 +25,12 @@
         },
         mounted() {
             this.renderChart(this.chartData, this.options)
+        },
+        computed: {
+            render: function () {
+                this.chartData = this.chartDataProp;
+                this.renderChart(this.chartData, this.options);
+            }
         }
     }
 </script>

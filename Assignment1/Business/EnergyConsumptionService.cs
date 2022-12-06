@@ -21,10 +21,16 @@ namespace Assignment1.Business
 
         public EnergyConsumptionViewModel AddEnergyConsumption(EnergyConsumptionViewModel energyConsumption)
         {
-            _genericRepository.Add<EnergyConsumption>(new EnergyConsumption { TimeStamp = energyConsumption.TimeStamp, Consumption = energyConsumption.Consumption, DeviceId = energyConsumption.DeviceId });
-            _deviceService.UpdateMaxHourlyConsumption(energyConsumption.DeviceId, energyConsumption.Consumption);
+            var device = _deviceService.GetDevice(energyConsumption.DeviceId);
 
-            return energyConsumption;
+            if(energyConsumption.Consumption <= device.MaxHourlyConsumption)
+            {
+                _genericRepository.Add<EnergyConsumption>(new EnergyConsumption { TimeStamp = energyConsumption.TimeStamp, Consumption = energyConsumption.Consumption, DeviceId = energyConsumption.DeviceId });
+
+                return energyConsumption;
+            }
+
+            return null;
         }
 
         public List<EnergyConsumptionViewModel> GetEnergyCosumptionForDevicePerDay(int deviceId, DateTime date)

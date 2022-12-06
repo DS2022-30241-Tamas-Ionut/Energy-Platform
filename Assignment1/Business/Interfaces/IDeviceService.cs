@@ -13,6 +13,5 @@ namespace Assignment1.Business.Interfaces
         DeviceViewModel DesignateUserToDevice(int deviceId, Guid userId);
         DeviceViewModel RemoveUserOwnershipOfDevice(int deviceId);
         List<DeviceViewModel> GetAllDevicesForUser(Guid userId);
-        DeviceViewModel UpdateMaxHourlyConsumption(int deviceId, double consumption);
     }
 }
