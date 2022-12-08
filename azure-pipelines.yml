@@ -15,7 +15,8 @@ variables:
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
-  vmImageName: 'Default'
+  vmImageName: 'local'
+
 
 stages:
 - stage: Build
@@ -26,7 +27,8 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: DotNetCoreCLI@2
+    - task: Docker@2
       inputs:
-        command: 'publish'
-        publishWebProjects: true
+        containerRegistry: 'containerregistryionuttamas30241'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
