@@ -3,5 +3,6 @@
     public interface IReceiveMessageService
     {
         void ReceiveMessage();
+        Task<string> ConsumeMessage();
     }
 }

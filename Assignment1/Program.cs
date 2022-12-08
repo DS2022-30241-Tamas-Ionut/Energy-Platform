@@ -19,7 +19,7 @@ builder.Services.AddScoped<IGenericRepository, GenericRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IDeviceService, DeviceService>();
 builder.Services.AddScoped<IEnergyConsumptionService, EnergyConsumptionService>();
-builder.Services.AddScoped<IReceiveMessageService, ReceiveMessageService>();
+builder.Services.AddSingleton<IReceiveMessageService, ReceiveMessageService>();
 
 builder.Services.AddDbContext<EnergyUtilityDbContext>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("EnergyUtility"), sqlServerOptionsAction: sqlOptions =>
@@ -50,7 +50,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseWebSockets();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -63,7 +63,7 @@ var services = app.Services.CreateScope().ServiceProvider;
 CreateUserRoles(services).Wait();
 CreateStartupUsers(services);
 
-var receiveMessages = new ReceiveMessageService(services.GetRequiredService<IEnergyConsumptionService>());
+var receiveMessages = services.GetService<IReceiveMessageService>();
 receiveMessages.ReceiveMessage();
 
 app.Run();

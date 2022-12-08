@@ -23,12 +23,13 @@
                 <chart v-if="showEnergyConsumption" :chart-data-prop=chartD></chart>
             </div>
         </div>
-        
+        <div id="snackbar">{{message}}</div>
     </div>
 </template>
 
 <script>
     import chart from './Chart.vue';
+    import $ from 'jquery';
     
     export default ({
         props: {
@@ -49,7 +50,8 @@
                 showSelectTimeModal: false,
                 showEnergyConsumption: false,
                 date: "",
-                selectedDevice: {}
+                selectedDevice: {},
+                message: ""
             }
         },
         methods: {
@@ -110,6 +112,37 @@
         },
         components: {
             chart
+        },
+        created: function () {
+            self = this;
+            this.getDevicesForUser();
+            this.connection = new WebSocket((location.protocol == "http:" ? "ws://" : "wss//") + location.host + "/WebSocket/Get")
+
+            this.connection.onmessage = function (event) {
+                self.message = event.data;
+                var id = self.message.match(/\d+/)[0];
+
+
+                if (self.devices && 
+                    self.devices.filter(element => {
+                        if (element.id === id) {
+                            return true;
+                        }
+
+                        return false;
+                    }))
+                {
+                    var x = document.getElementById("snackbar");
+
+                    x.className = "show";
+
+                    setTimeout(function () { x.className = x.className.replace("show", ""); }, 7000);
+                }
+            }
+
+            this.connection.onopen = function (event) {
+                console.log("Successfully connected to the websocket server...")
+            }
         }
     })
 </script>
