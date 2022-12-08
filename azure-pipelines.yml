@@ -24,8 +24,7 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: $(vmImageName)
+    pool: 'local'
     steps:
     - task: Docker@2
       inputs:
