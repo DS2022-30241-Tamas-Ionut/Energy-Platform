@@ -24,7 +24,7 @@ services:
     ports:
       - "8000:80"
     depends_on:
-      demo-db:
+      db:
         condition: service_healthy
 
   rabbitmq-deploy:
