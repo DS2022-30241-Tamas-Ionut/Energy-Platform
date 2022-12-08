@@ -17,10 +17,9 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
-    container_name: demo-db
 
   be:
-    image: containerregistryionuttamas30241.azure
+    image: containerregistryionuttamas30241.azurecr.io/tamasionut30241backend:21
     ports:
       - "8000:80"
     depends_on:
@@ -29,7 +28,6 @@ services:
 
   rabbitmq-deploy:
     image: rabbitmq:3.11-management
-    container_name: 'rabbitmq'
     ports:
         - 5672:5672
         - 15672:15672
