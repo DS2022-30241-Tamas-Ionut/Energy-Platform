@@ -2,8 +2,8 @@ version: '3'
 
 services:
 
-  demo-db:
-    image: mcr.microsoft.com/mssql/server
+  db:
+    image: containerregistryionuttamas30241.azurecr.io/db
     
     healthcheck:
       test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Admin123!" -Q "SELECT 1" || exit 1
@@ -19,15 +19,15 @@ services:
       - "1433:1433"
     container_name: demo-db
 
-  demo-be:
-    image: be
+  be:
+    image: containerregistryionuttamas30241.azure
     ports:
       - "8000:80"
     depends_on:
       demo-db:
         condition: service_healthy
 
-  rabbitmq:
+  rabbitmq-deploy:
     image: rabbitmq:3.11-management
     container_name: 'rabbitmq'
     ports:
