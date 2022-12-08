@@ -27,7 +27,11 @@ stages:
     pool: 'local'
     steps:
     - task: Docker@2
+      displayName: Build and push an image to container registry
       inputs:
-        containerRegistry: 'containerregistryionuttamas30241'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
