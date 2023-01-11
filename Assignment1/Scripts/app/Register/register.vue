@@ -31,7 +31,7 @@
         },
         methods: {
             register() {
-                if (!username || !password || !address || !firstName || !lastName) {
+                if (!this.username || !this.password || !this.address || !this.firstName || !this.lastName) {
                     return;
                 }
                 $.ajax({

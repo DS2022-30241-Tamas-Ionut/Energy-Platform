@@ -116,7 +116,7 @@
         created: function () {
             self = this;
             this.getDevicesForUser();
-            this.connection = new WebSocket((location.protocol == "http:" ? "ws://" : "wss//") + location.host + "/WebSocket/Get")
+            this.connection = new WebSocket((location.protocol == "http:" ? "ws://" : "wss://") + location.host + "/WebSocket/Get")
 
             this.connection.onmessage = function (event) {
                 self.message = event.data;
