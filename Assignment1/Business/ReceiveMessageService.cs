@@ -27,7 +27,7 @@ namespace Assignment1.Business
             _deviceService = _services.CreateScope().ServiceProvider.GetService<IDeviceService>();
             _energyConsumptionService = _services.CreateScope().ServiceProvider.GetService<IEnergyConsumptionService>();
             
-            ConnectionFactory = new ConnectionFactory() { HostName = "host.docker.internal" };
+            ConnectionFactory = new ConnectionFactory() { HostName = "localhost" };
             Connection = ConnectionFactory.CreateConnection();
             Channel = Connection.CreateModel();
 

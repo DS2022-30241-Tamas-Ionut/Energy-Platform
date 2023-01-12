@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+@model string
+<div class="parent">
+    <div>Hello, @User.Identity.Name</div>
+</div>
+<div id="chat">
+    <chat :user="user"/>
+</div>
+
+<script>
+    var user = "@Model";
+</script>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/bundle/Chat.js"></script>

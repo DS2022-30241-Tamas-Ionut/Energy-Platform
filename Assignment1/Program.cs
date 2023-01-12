@@ -1,5 +1,6 @@
 using Assignment1.Business;
 using Assignment1.Business.Interfaces;
+using Assignment1.Hubs;
 using Assignment1.Models;
 using Assignment1.Repository;
 using Assignment1.Repository.Interfaces;
@@ -36,6 +37,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,6 +60,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Index}/{id?}");
+
+app.MapHub<ChatHub>("/chatHub");
 
 var services = app.Services.CreateScope().ServiceProvider;
 

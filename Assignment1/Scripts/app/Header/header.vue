@@ -1,5 +1,8 @@
 ﻿<template>
-    <a @click=logout() class="header-elements button-header" href="/">Logout</a>
+    <div>
+        <a @click="redirect" class="header-elements button-header" href="/Chat">Chat</a>
+        <a @click=logout() class="header-elements button-header" href="/">Logout</a>
+    </div>
 </template>
 
 <script>
@@ -24,6 +27,9 @@
                         location.href = "/";
                     }
                 });
+            },
+            redirect() {
+                location.href = "/Chat"
             }
         }
     })

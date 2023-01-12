@@ -20,7 +20,11 @@ services:
     image: containerregistryionuttamas30241.azurecr.io/tamasionut30241backend
     ports:
       - "80:80"
+      - "443:443"
     restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
     depends_on:
       db:
         condition: service_healthy
